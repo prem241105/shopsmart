@@ -47,7 +47,7 @@ function displayProducts(productsToDisplay) {
     product.prices.forEach(priceInfo => {
       pricesHtml += `<p>${priceInfo.store}: $${priceInfo.price}</p>`;
     });
-    productItem.innerHTML = `<h3>${product.name}</h3>${pricesHtml}`;
+    productItem.innerHTML = `<img src="${product.image}" alt="${product.name}" style="width:100%;height:auto;border-radius:10px;"><h3>${product.name}</h3>${pricesHtml}`;
     productGrid.appendChild(productItem);
   });
 }
