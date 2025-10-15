@@ -1,10 +1,11 @@
 // Search Function
 function searchProduct() {
-  const query = document.getElementById("searchBar").value;
-  if (query.trim() === "") {
+  const query = document.getElementById("searchBar").value.trim();
+  if (query === "") {
     alert("Please enter a product name!");
   } else {
-    alert("Searching for: " + query);
+    // Redirect to product page with search query
+    window.location.href = "/shopsmart/product.html?search=" + encodeURIComponent(query);
   }
 }
 
@@ -32,7 +33,17 @@ window.onload = function() {
       .then(response => response.json())
       .then(data => {
         products = data;
-        displayProducts(products);
+        // Check for search query in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        if (searchQuery) {
+          const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+          displayProducts(filteredProducts);
+        } else {
+          displayProducts(products);
+        }
       });
   }
 };
