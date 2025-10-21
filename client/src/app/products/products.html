@@ -1,0 +1,71 @@
+<header>
+  <h1>ShopSmart 🛒</h1>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/products">Products</a>
+  </nav>
+</header>
+
+<section class="products-hero">
+  <div class="hero-content">
+    <h2>Discover Amazing Products</h2>
+    <p>Find the best deals across multiple stores</p>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="filter-container">
+    <input type="text" id="productSearch" placeholder="Search products..." (input)="filterProducts($event)">
+    <select id="sortSelect" (change)="sortProducts($event)">
+      <option value="">Sort by</option>
+      <option value="name">Name</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+    </select>
+  </div>
+</section>
+
+<section class="products">
+  <div class="product-grid">
+    <div class="product-item" *ngFor="let product of filteredProducts" (click)="showProductDetails(product)">
+      <img [src]="product.image" [alt]="product.name">
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="description">{{ product.description || 'High-quality product with great value.' }}</p>
+        <div class="prices">
+          <p *ngFor="let price of product.prices" class="price-item">
+            <span class="store">{{ price.store }}</span>: <span class="price">${{ price.price }}</span>
+          </p>
+        </div>
+        <button class="view-details-btn">View Details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Details Modal -->
+<div class="modal" *ngIf="selectedProduct" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <div class="modal-body">
+      <img [src]="selectedProduct.image" [alt]="selectedProduct.name">
+      <div class="modal-details">
+        <h2>{{ selectedProduct.name }}</h2>
+        <p class="description">{{ selectedProduct.description || 'Detailed product information.' }}</p>
+        <div class="prices">
+          <h3>Prices:</h3>
+          <p *ngFor="let price of selectedProduct.prices">
+            <strong>{{ price.store }}</strong>: ${{ price.price }}
+          </p>
+        </div>
+        <button class="buy-now-btn">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 ShopSmart. All Rights Reserved.</p>
+</footer>

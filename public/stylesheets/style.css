@@ -187,12 +187,19 @@ nav a:hover {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
     text-align: center;
-    color: white;
+    color: #333;
     transition: transform 0.3s;
 }
 
 .product-item:hover {
     transform: translateY(-10px);
+}
+
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 footer {

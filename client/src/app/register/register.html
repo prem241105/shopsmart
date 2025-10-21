@@ -1,0 +1,41 @@
+<header>
+  <h1>ShopSmart 🛒</h1>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/products">Products</a>
+  </nav>
+</header>
+
+<section class="register-container">
+  <div class="register-box">
+    <h2>Join ShopSmart</h2>
+    <p>Create your account to start shopping</p>
+    <form (ngSubmit)="registerUser()">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Full Name" required>
+        <span class="icon">👤</span>
+      </div>
+      <div class="input-group">
+        <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required>
+        <span class="icon">👤</span>
+      </div>
+      <div class="input-group">
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
+        <span class="icon">📧</span>
+      </div>
+      <div class="input-group">
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
+        <span class="icon">🔒</span>
+      </div>
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+    <p class="login-link">Already have an account? <a routerLink="/login">Sign in</a></p>
+    <p *ngIf="registerMessage" [class]="registerMessage.includes('successful') ? 'success' : 'error'">{{ registerMessage }}</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 ShopSmart. All Rights Reserved.</p>
+</footer>

@@ -1,0 +1,80 @@
+<!-- Loading Screen -->
+<div class="loading" id="loading">
+  <div class="floating">
+    <h2 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">ShopSmart</h2>
+  </div>
+</div>
+
+<header id="main-header">
+  <h1 class="gradient-text">ShopSmart</h1>
+  <nav>
+    <a routerLink="/" routerLinkActive="router-link-active">
+      <span class="nav-icon">🏠</span>
+      Home
+    </a>
+    <a routerLink="/login" routerLinkActive="router-link-active">
+      <span class="nav-icon">🔐</span>
+      Login
+    </a>
+    <a routerLink="/register" routerLinkActive="router-link-active">
+      <span class="nav-icon">📝</span>
+      Register
+    </a>
+    <a routerLink="/about" routerLinkActive="router-link-active">
+      <span class="nav-icon">ℹ️</span>
+      About
+    </a>
+    <a routerLink="/products" routerLinkActive="router-link-active">
+      <span class="nav-icon">🛍️</span>
+      Products
+    </a>
+  </nav>
+</header>
+
+<main class="page-enter">
+  <router-outlet />
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3 class="gradient-text">ShopSmart</h3>
+      <p>Your ultimate destination for smart shopping decisions.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">🐦</a>
+        <a href="#" class="social-link">📷</a>
+        <a href="#" class="social-link">💼</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a routerLink="/about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Stay Updated</h4>
+      <p>Subscribe to our newsletter for the latest deals and updates.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Enter your email" class="newsletter-input">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ShopSmart. Made with ❤️ for smart shoppers everywhere.</p>
+  </div>
+</footer>
