@@ -15,9 +15,9 @@ var aboutRouter = require('./routes/about');
 var productRouter = require('./routes/product');
 
 const mongoose = require('mongoose');
-// For local MongoDB, use: mongoose.connect('mongodb://localhost:27017/shopsmart')
-// For Atlas, ensure IP is whitelisted
-mongoose.connect('mongodb://localhost:27017/shopsmart')
+// Use environment variable for MongoDB URI, fallback to local for development
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/shopsmart';
+mongoose.connect(mongoUri)
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
@@ -31,10 +31,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: 'your-secret-key', // Change this to a secure secret in production
+  secret: process.env.SESSION_SECRET || 'your-secret-key', // Use environment variable for session secret
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/shopsmart' })
+  store: MongoStore.create({ mongoUrl: mongoUri })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
