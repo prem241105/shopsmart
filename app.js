@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+const MongoStore = require('connect-mongo');
 var passport = require('passport');
 
 var indexRouter = require('./routes/index');
@@ -32,7 +33,8 @@ app.use(cookieParser());
 app.use(session({
   secret: 'your-secret-key', // Change this to a secure secret in production
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/shopsmart' })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
