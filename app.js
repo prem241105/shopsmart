@@ -15,11 +15,24 @@ var aboutRouter = require('./routes/about');
 var productRouter = require('./routes/product');
 
 const mongoose = require('mongoose');
-// Use environment variable for MongoDB URI, fallback to local for development
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/shopsmart';
+// Use environment variable for MongoDB URI
+let mongoUri = process.env.MONGODB_URI;
+if (!mongoUri) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('MONGODB_URI environment variable is required in production.');
+    process.exit(1);
+  } else {
+    mongoUri = 'mongodb://localhost:27017/shopsmart';
+  }
+}
 mongoose.connect(mongoUri)
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
+  .catch(err => {
+    console.error('Could not connect to MongoDB...', err);
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    }
+  });
 
 var app = express();
 
