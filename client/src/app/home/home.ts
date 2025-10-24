@@ -20,4 +20,16 @@ export class Home {
       this.router.navigate(['/products']);
     }
   }
+
+  subscribeNewsletter(event: Event) {
+    event.preventDefault();
+    const emailInput = document.querySelector('input[type="email"]') as HTMLInputElement;
+    const email = emailInput.value.trim();
+    if (email) {
+      alert(`Thank you for subscribing! We'll send updates to ${email}`);
+      emailInput.value = '';
+    } else {
+      alert('Please enter a valid email address.');
+    }
+  }
 }

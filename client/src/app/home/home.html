@@ -49,8 +49,8 @@
 <section class="newsletter">
   <h2>Stay Updated</h2>
   <p>Subscribe to our newsletter for the latest deals and product updates.</p>
-  <form>
-    <input type="email" placeholder="Enter your email" required>
+  <form (ngSubmit)="subscribeNewsletter($event)">
+    <input type="email" #emailInput placeholder="Enter your email" required>
     <button type="submit">Subscribe</button>
   </form>
 </section>
