@@ -74,4 +74,10 @@ export class Products implements OnInit {
   closeModal() {
     this.selectedProduct = null;
   }
+
+  buyNow(product: Product) {
+    // For now, just show an alert. In a real app, this would redirect to the store
+    alert(`Redirecting to purchase ${product.name}...`);
+    // You could add logic here to redirect to the actual store URL
+  }
 }
